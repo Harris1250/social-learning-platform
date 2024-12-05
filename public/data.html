@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="/js/auth.js"></script>
+
+    <!-- Restrict Access for Unauthorized Users -->
+    <script>
+        fetch('/api/profile') // Check user session from the server
+            .then(response => {
+                if (response.status === 401) {
+                    // Redirect to login.html if unauthorized
+                    window.location.href = '/login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking authentication:', error);
+                window.location.href = '/login.html'; // Redirect on error
+            });
+    </script>
+
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="data.html" class="active">Data</a></li>
+                <li><a href="createPost.html">Create Post</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="admin.html">Admin Panel</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="data-container">
+        <h1>Data Management</h1>
+        <p>This section is dedicated to streamlining your data operations. 
+           Here, you can seamlessly view, add, update, or delete data entries with precision and ease. 
+           Whether you're maintaining records, organizing key information, or making updates, this page provides all the tools necessary for effective data management.
+        </p>
+
+        <!-- Form for Adding or Updating Data -->
+        <form id="data-form" class="form-container">
+            <h3>Add or Update Data</h3>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required />
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Section to Display Submitted Data -->
+        <div id="data-entries">
+            <h3>Submitted Data:</h3>
+            <ul id="data-list"></ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Social Learning Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('data-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+    
+            const title = document.getElementById('title').value.trim();
+            const content = document.getElementById('content').value.trim();
+    
+            // Client-side validation
+            if (title === '') {
+                alert('Title is required.');
+                return;
+            }
+            if (content === '') {
+                alert('Content cannot be empty.');
+                return;
+            }
+    
+            try {
+                const response = await fetch('/api/data', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title, content }),
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Failed to submit data');
+                }
+    
+                const result = await response.json();
+                alert(result.message || 'Data submitted successfully.');
+    
+                // Fetch updated data and display it
+                loadData();
+            } catch (error) {
+                alert('An error occurred while submitting data.');
+                console.error('Error:', error);
+            }
+        });
+    
+        async function loadData() {
+            try {
+                const response = await fetch('/api/data');
+                const data = await response.json();
+    
+                const dataList = document.getElementById('data-list');
+                dataList.innerHTML = '';
+    
+                data.forEach((entry) => {
+                    const li = document.createElement('li');
+                    li.textContent = `${entry.title}: ${entry.content}`;
+                    dataList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+    
+        // Load existing data when the page loads
+        loadData();
+    </script>
+    
+</body>
+</html>

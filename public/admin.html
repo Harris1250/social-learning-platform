@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="/js/auth.js"></script>
+
+    <!-- Restrict Access for Unauthorized Users -->
+    <script>
+        fetch('/api/profile') // Check user session from the server
+            .then(response => {
+                if (response.status === 401) {
+                    // Redirect to login.html if unauthorized
+                    window.location.href = '/login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking authentication:', error);
+                window.location.href = '/login.html'; // Redirect on error
+            });
+    </script>
+
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admin.html" class="active">Admin Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Manage Users Below:</h2>
+        <div id="user-list">Loading users...</div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Social Learning Platform. All rights reserved.</p>
+    </footer>
+    <script>
+        // Fetch data from the new route
+        fetch('http://localhost:3000/api/users')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to fetch users');
+                return response.json();
+            })
+            .then(data => {
+                const userList = document.getElementById('user-list');
+                userList.innerHTML = ''; // Clear loading text
+                data.forEach(user => {
+                    const userDiv = document.createElement('div');
+                    userDiv.className = 'user';
+                    userDiv.textContent = `Name: ${user.name}, Email: ${user.email}`;
+                    userList.appendChild(userDiv);
+                });
+            })
+            .catch(error => {
+                document.getElementById('user-list').textContent = 'Error fetching users.';
+                console.error(error);
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="/js/auth.js"></script>
+
+    <!-- Restrict Access for Unauthorized Users -->
+    <script>
+        fetch('/api/profile') // Check user session from the server
+            .then(response => {
+                if (response.status === 401) {
+                    // Redirect to login.html if unauthorized
+                    window.location.href = '/login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking authentication:', error);
+                window.location.href = '/login.html'; // Redirect on error
+            });
+    </script>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="data.html">Data</a></li>
+                <li><a href="createPost.html">Create Post</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="admin.html">Admin Panel</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="contact-container">
+        <div class="contact-card">
+            <h1>Contact Us</h1>
+            <p>If you have any questions or feedback, feel free to reach out to us using the form below.</p>
+            <form id="contactForm" action="/contact" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Social Learning Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="data.html">Data</a></li>
+                <li><a href="createPost.html">Create Post</a></li>
+                <li><a href="posts.html">Posts</a></li>
+                <li><a href="admin.html">Admin Panel</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="faq-container">
+        <h1>Frequently Asked Questions</h1>
+        <div class="faq">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                What is the purpose of this platform?
+            </div>
+            <div class="faq-answer">
+                The Social Learning Platform is designed to create a collaborative environment for learners, educators, and professionals to share knowledge, grow skills, and engage in discussions.
+            </div>
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                How do I create an account?
+            </div>
+            <div class="faq-answer">
+                Click on the "Register" link in the navigation bar. Fill out the form with your details and start exploring the platform's features immediately.
+            </div>
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                What features does this platform offer?
+            </div>
+            <div class="faq-answer">
+                Features include user authentication, profile management, data creation and updates, post management, secure user roles, and more—all powered by modern web technologies.
+            </div>
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                Who can use this platform?
+            </div>
+            <div class="faq-answer">
+                Anyone interested in learning, teaching, or sharing knowledge can use this platform, including students, educators, professionals, and hobbyists.
+            </div>
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                Is my data secure on this platform?
+            </div>
+            <div class="faq-answer">
+                Yes, data security is a priority. We implement secure authentication protocols and adhere to best practices to protect user data.
+            </div>
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                Can I delete my account?
+            </div>
+            <div class="faq-answer">
+                Yes, you can delete your account by going to the "Settings" page and selecting the "Delete Account" option.
+            </div>
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                How can I reset my password?
+            </div>
+            <div class="faq-answer">
+                Click on "Forgot Password" on the login page and follow the instructions to reset your password.
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Social Learning Platform. All rights reserved.</p>
+    </footer>
+    <script>
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            answer.style.display = answer.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+</html>

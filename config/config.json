@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "mnadeem2",
+    "password": "Undergradstudent2002",
+    "database": "social_learning_platform",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "mnadeem2",
+    "password": "Undergradstudent2002",
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "mnadeem2",
+    "password": "Undergradstudent2002",
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

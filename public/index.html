@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Social Learning Platform</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="createPost.html">Create Post</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="admin.html">Admin Panel</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="FAQ.html">FAQ</a></li>
+        <li><a id="loginLink" href="login.html" style="display: none;">Login</a></li>
+        <li><a id="registerLink" href="register.html" style="display: none;">Register</a></li>
+        <li><a id="logoutLink" href="#" style="display: none;">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="home-container">
+    <h1>Welcome to the Social Learning Platform!</h1>
+    <p>Empowering learners and innovators to connect, collaborate, and grow. Join our community to unlock new opportunities, share knowledge, and achieve your goals together!</p>
+    <div class="home-image">
+      <img src="image.png" alt="Social Learning Platform">
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Social Learning Platform. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Check if the user is logged in
+    fetch('/api/profile')
+      .then((response) => {
+        if (response.ok) {
+          // User is logged in, show Logout
+          document.getElementById('logoutLink').style.display = 'inline-block';
+        } else {
+          // User is not logged in, show Login and Register
+          document.getElementById('loginLink').style.display = 'inline-block';
+          document.getElementById('registerLink').style.display = 'inline-block';
+        }
+      })
+      .catch((error) => {
+        console.error('Error checking login status:', error);
+      });
+
+    // Handle logout functionality
+    document.getElementById('logoutLink').addEventListener('click', async (event) => {
+      event.preventDefault();
+      try {
+        const response = await fetch('/api/logout', { method: 'POST' });
+        if (response.ok) {
+          alert('Logged out successfully!');
+          window.location.href = '/index.html'; // Reload homepage
+        } else {
+          alert('Failed to log out. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error logging out:', error);
+        alert('An error occurred while logging out.');
+      }
+    });
+  </script>
+</body>
+</html>

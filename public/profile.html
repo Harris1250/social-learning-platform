@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="/js/auth.js"></script>
+
+    <!-- Restrict Access for Unauthorized Users -->
+    <script>
+        fetch('/api/profile') // Check user session from the server
+            .then(response => {
+                if (response.status === 401) {
+                    // Redirect to login.html if unauthorized
+                    window.location.href = '/login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking authentication:', error);
+                window.location.href = '/login.html'; // Redirect on error
+            });
+    </script>
+
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="data.html">Data</a></li>
+                <li><a href="createPost.html">Create Post</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="profile-container">
+        <div class="profile-card">
+            <h1>Welcome to Your Profile</h1>
+            <p><strong>Welcome:</strong> Muhammad</p>
+            <p><strong>Email:</strong> harrisnadeem100@gmail.com</p>
+            <p><strong>Role:</strong> Student</p>
+            <button id="logoutButton" class="logout-btn">Logout</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Social Learning Platform. All rights reserved.</p>
+    </footer>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>

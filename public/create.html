@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Entry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="/js/auth.js"></script>
+
+    <!-- Restrict Access for Unauthorized Users -->
+    <script>
+        fetch('/api/profile') // Check user session from the server
+            .then(response => {
+                if (response.status === 401) {
+                    // Redirect to login.html if unauthorized
+                    window.location.href = '/login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking authentication:', error);
+                window.location.href = '/login.html'; // Redirect on error
+            });
+    </script>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="data.html">Data</a></li>
+                <li><a href="createPost.html" class="active">Create Post</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="admin.html">Admin Panel</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Create a New Entry</h1>
+        <form id="createForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br><br>
+
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="5" required></textarea><br><br>
+
+            <button type="submit">Create</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Social Learning Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('createForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+
+            try {
+                const response = await fetch('/data/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title, content }),
+                });
+
+                if (response.ok) {
+                    alert('Entry created successfully!');
+                    window.location.href = '/data.html';
+                } else {
+                    const error = await response.json();
+                    alert(error.message || 'Error creating entry.');
+                }
+            } catch (error) {
+                alert('An unexpected error occurred.');
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
