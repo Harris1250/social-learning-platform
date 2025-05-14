@@ -32,34 +32,34 @@ A collaborative platform empowering learners, innovators, and educators to conne
 ## 📸 Screenshots
 
 ### 🔹 Homepage  
-![Homepage](screenshots/homepage.png)
+![Homepage](Screenshots/homepage.png)
 
 ### 🔹 About Page  
-![About](screenshots/about.png)
+![About](Screenshots/about.png)
 
 ### 🔹 Profile Page  
-![Profile](screenshots/profile.png)
+![Profile](Screenshots/profile.png)
 
 ### 🔹 Data Management  
-![Data](screenshots/data.png)
+![Data](Screenshots/data.png)
 
 ### 🔹 Create Post  
-![Create Post](screenshots/create-post.png)
+![Create Post](Screenshots/create-post.png)
 
 ### 🔹 Contact Page  
-![Contact](screenshots/contact.png)
+![Contact](Screenshots/contact.png)
 
 ### 🔹 Login Page  
-![Login](screenshots/login.png)
+![Login](Screenshots/login.png)
 
 ### 🔹 Register Page  
-![Register](screenshots/register.png)
+![Register](Screenshots/register.png)
 
 ### 🔹 FAQ Page  
-![FAQ](screenshots/faq.png)
+![FAQ](Screenshots/faq.png)
 
 ### 🔹 Admin Panel  
-![Admin Panel](screenshots/admin-panel.png)
+![Admin Panel](Screenshots/admin-panel.png)
 
 ---
 
