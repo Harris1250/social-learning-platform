@@ -31,8 +31,6 @@ A collaborative platform empowering learners, innovators, and educators to conne
 
 ## 📸 Screenshots
 
-## 📸 Screenshots
-
 ### 🔹 Homepage  
 ![Homepage](screenshots/homepage.png)
 
