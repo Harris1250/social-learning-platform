@@ -35,7 +35,6 @@ A collaborative platform empowering learners, innovators, and educators to conne
 ![Homepage](screenshots/homepage.png)
 
 ### 🔹 About Page  
-### 🔹 About Page  
 ![About](https://github.com/Harris1250/social-learning-platform/blob/main/screenshots/about.png?raw=true)
 
 ### 🔹 Profile Page  
